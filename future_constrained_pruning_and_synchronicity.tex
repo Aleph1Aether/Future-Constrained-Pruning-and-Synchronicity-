@@ -117,6 +117,61 @@ Dividing by $Z_\lambda$ gives the first identity. Differentiating once more yiel
 
 The point of this proposition is conceptual. As $\lambda$ increases, the constrained ensemble is driven monotonically toward lower-penalty endpoint classes. In other words, the suppression parameter really does act as a selection-strength parameter in a precise sense. That fact will later support the paper's interpretation of pruning as selective contraction of branch width rather than merely rhetorical ``blocking.''
 
+The same calculus yields a useful response identity for arbitrary observables on path-space.
+
+\begin{proposition}[Observable response under endpoint tilting]
+Let $A[x(\cdot)]$ be any integrable path observable under $P_\lambda$. Then
+\[
+\frac{d}{d\lambda}\mathbb{E}_{P_\lambda}[A]
+= -\operatorname{Cov}_{P_\lambda}\bigl(A,\Phi(x(T))\bigr).
+\]
+In particular, observables negatively correlated with the endpoint penalty increase in expectation as $\lambda$ grows, while observables positively correlated with the endpoint penalty decrease.
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+\mathbb{E}_{P_\lambda}[A] = \frac{1}{Z_\lambda}\int A e^{-\lambda \Phi}\, dP_0.
+\]
+Differentiating under the integral sign and using the identity for $Z_\lambda'/Z_\lambda$ gives
+\[
+\frac{d}{d\lambda}\mathbb{E}_{P_\lambda}[A]
+= -\mathbb{E}_{P_\lambda}[A\Phi] + \mathbb{E}_{P_\lambda}[A]\,\mathbb{E}_{P_\lambda}[\Phi],
+\]
+which is exactly the negative covariance.
+\end{proof}
+
+This identity is one of the paper's most useful technical facts. It makes clear that the tilted measure changes not only endpoint frequencies but every path-level observable whose statistics are coupled to endpoint penalty.
+
+\begin{proposition}[Relative-entropy representation]
+Assume $P_\lambda \ll P_0$. Then the Kullback--Leibler divergence of the tilted ensemble from the baseline is
+\[
+D_{\mathrm{KL}}(P_\lambda\|P_0)
+= -\lambda\,\mathbb{E}_{P_\lambda}[\Phi(x(T))] - \log Z_\lambda.
+\]
+Moreover,
+\[
+\frac{d}{d\lambda}D_{\mathrm{KL}}(P_\lambda\|P_0)
+= \lambda\,\operatorname{Var}_{P_\lambda}(\Phi(x(T))) \ge 0.
+\]
+Thus the informational distance between constrained and unconstrained path ensembles grows monotonically with suppression strength.
+\end{proposition}
+
+\begin{proof}
+Using
+\[
+\log \frac{dP_\lambda}{dP_0} = -\lambda \Phi(x(T)) - \log Z_\lambda,
+\]
+integrate against $P_\lambda$ to obtain the first identity. Differentiating and using the free-energy proposition yields
+\[
+\frac{d}{d\lambda}D_{\mathrm{KL}}(P_\lambda\|P_0)
+= -\mathbb{E}_{P_\lambda}[\Phi] - \lambda\frac{d}{d\lambda}\mathbb{E}_{P_\lambda}[\Phi] - F'(\lambda)
+= \lambda\operatorname{Var}_{P_\lambda}(\Phi).
+\]
+\end{proof}
+
+The interpretive point is straightforward. As $\lambda$ increases, the constrained world not only selects different endpoint classes. It becomes quantitatively less typical relative to the unconstrained ensemble in an information-theoretic sense. This gives a more exact expression to the informal idea that the realized corridor becomes increasingly ``non-generic.''
+
 \section{Regularity Conditions and the Mathematics of Hiddenness}
 
 The model remains coherent only if the reweighting is constrained. Not every endpoint penalty produces subtle pruning. Some would force visible rupture, degeneration of continuity, or measure-theoretic pathologies incompatible with the intended phenomenology.
@@ -228,6 +283,19 @@ whenever the concentration gain outweighs any loss in total event count.
 \begin{proof}[Sketch]
 Split path-space into the corridor $\mathcal{C}$ and its complement. Under the constrained measure, the mass on $\mathcal{C}$ increases. By assumption, conditional expected motif count is higher on $\mathcal{C}$ than on the complement and than on typical baseline paths. The law of total expectation then yields the inequality whenever the reweighting toward $\mathcal{C}$ dominates any reduction in raw event opportunities.
 \end{proof}
+
+An even sharper statement follows directly from the covariance identity above.
+
+\begin{corollary}[Covariance criterion for increasing synchronicity]
+Let $R_M[x(\cdot)]$ be the recurrence count of motif $M$. Then
+\[
+\frac{d}{d\lambda}\mathbb{E}_{P_\lambda}[R_M]
+= -\operatorname{Cov}_{P_\lambda}(R_M,\Phi(x(T))).
+\]
+Hence expected recurrence increases with suppression strength whenever motif recurrence is negatively correlated with endpoint penalty under the tilted measure.
+\end{corollary}
+
+This criterion makes the paper's core duality precise. Synchronicity is not an additional primitive. It emerges when the motifs that populate the surviving corridor are precisely those more common on lower-penalty trajectories than on penalized ones.
 
 This is the structural origin of synchronicity in the model. No supernatural insertion is required. One need not posit that coincidence is manually placed into the path as a message. Rather, the person repeatedly threads a narrower corridor whose geometry already contains repeated structure. From the inside, this appears as meaningful coincidence, uncanny timing, symbolic repetition, and the feeling that reality is becoming more communicative. Formally, it is the sample-path expression of compression.
 
@@ -360,6 +428,18 @@ To make the path-space picture concrete, consider a finite state system with pre
 q_i(\lambda) = \frac{e^{-\lambda c_i}}{\sum_{j=1}^4 e^{-\lambda c_j}}.
 \]
 As $\lambda$ increases, mass concentrates on lower-consequence endpoints. Entropy decreases smoothly, while the realized sample paths are increasingly drawn from a narrower subset of corridor structure. This toy model obviously proves nothing about actual lives, but it illustrates the formal mechanism transparently.
+
+At $\lambda=1$, for example, one obtains approximately
+\[
+q(1) \approx (0.657, 0.242, 0.089, 0.012).
+\]
+The baseline entropy is $H(p)=\log 4 \approx 1.386$, whereas the tilted entropy is
+\[
+H(q(1)) \approx 0.908.
+\]
+Thus even in the simplest finite-state case, moderate terminal tilting already produces a substantial contraction of branch entropy without requiring any hard exclusion of endpoints.
+
+If one further defines a motif indicator with frequencies $(0.1,0.2,0.5,0.8)$ across the four endpoint classes, then the expected motif recurrence increases under the tilt precisely when the motif is concentrated on lower-penalty classes. This finite example makes the pruning/synchronicity duality algebraically explicit.
 
 \section{Interpretive Caution}
 
