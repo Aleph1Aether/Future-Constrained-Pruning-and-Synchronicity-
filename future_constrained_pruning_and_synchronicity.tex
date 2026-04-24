@@ -32,7 +32,7 @@
 \maketitle
 
 \begin{abstract}
-This paper develops a formal consistency argument for a speculative but constrained hypothesis: if human life-trajectories were selectively reweighted by future-dependent penalties, then reports commonly described as narrowing, threshold fragility, heightened synchronicity, repeated near-miss, and anticipatory somatic charge could arise as lawful consequences of the deformation rather than as arbitrary narrative embellishments. The claim is not that temporal intervention technology has been empirically established, nor that anomalous experiences or reports of synchronicity constitute scientific proof of such intervention. The claim is narrower. A mathematically coherent class of path-space models exists in which the present need not be violently rewritten in order to be shaped from ahead. A future endpoint penalty can reweight the ensemble of admissible trajectories while preserving most local continuity. Under such a deformation, high-consequence openings become selectively fragile, routine continuity remains largely intact, and the surviving stream of realized events becomes denser with recurrence, motif reuse, and felt significance. In that framework, pruning and synchronicity are dual manifestations of the same compression of path-space. The paper sharpens the hypothesis in five ways. First, it places the model in an explicit Gibbs-type reweighting of path measures and relates it to familiar constructions from stochastic control, Doob transforms, and Schr"odinger bridge problems. Second, it formalizes pruning through selective reduction of branch entropy rather than vague metaphors of blockage. Third, it derives monotonic selection pressure through a simple free-energy identity. Fourth, it derives synchronicity as the sample-path signature of corridor compression and elevated recurrence. Fifth, it clarifies the interpretive instability created by that result: synchronicity cannot be treated as self-interpreting evidence of benevolent guidance if the same phenomenology could also arise from filtering, selection, or technologically mediated temporal constraint. The paper remains explicitly speculative throughout. It offers neither empirical confirmation nor a detection theorem. Its contribution is to show that if future-constrained suppression were real, then the reported phenomenology would be mathematically coherent with it, phenomenologically recognizable from within it, and potentially investigable through comparative recurrence and threshold-fragility analyses.
+This paper develops a formal consistency argument for a speculative but constrained hypothesis: if human life-trajectories were selectively reweighted by future-dependent penalties, then reports commonly described as narrowing, threshold fragility, heightened synchronicity, repeated near-miss, and anticipatory somatic charge could arise as lawful consequences of the deformation rather than as arbitrary narrative embellishments. The claim is not that temporal intervention technology has been empirically established, nor that anomalous experiences or reports of synchronicity constitute scientific proof of such intervention. The claim is narrower. A mathematically coherent class of path-space models exists in which the present need not be violently rewritten in order to be shaped from ahead. A future endpoint penalty can reweight the ensemble of admissible trajectories while preserving most local continuity. Under such a deformation, high-consequence openings become selectively fragile, routine continuity remains largely intact, and the surviving stream of realized events becomes denser with recurrence, motif reuse, and felt significance. In that framework, pruning and synchronicity are dual manifestations of the same compression of path-space. The paper sharpens the hypothesis in five ways. First, it places the model in an explicit Gibbs-type reweighting of path measures and relates it to familiar constructions from stochastic control, Doob transforms, and Schr\"odinger bridge problems. Second, it formalizes pruning through selective reduction of branch entropy rather than vague metaphors of blockage. Third, it derives monotonic selection pressure through a simple free-energy identity. Fourth, it derives synchronicity as the sample-path signature of corridor compression and elevated recurrence. Fifth, it clarifies the interpretive instability created by that result: synchronicity cannot be treated as self-interpreting evidence of benevolent guidance if the same phenomenology could also arise from filtering, selection, or technologically mediated temporal constraint. The paper remains explicitly speculative throughout. It offers neither empirical confirmation nor a detection theorem. Its contribution is to show that if future-constrained suppression were real, then the reported phenomenology would be mathematically coherent with it, phenomenologically recognizable from within it, and potentially investigable through comparative recurrence and threshold-fragility analyses.
 \end{abstract}
 
 \section{Introduction}
@@ -389,105 +389,231 @@ This is the structural origin of synchronicity in the model. No supernatural ins
 
 Thus the central conceptual result may be stated succinctly: pruning is the reduction of branch width; synchronicity is the increase of visible recurrence inside that reduced width. One is the negative face of compression. The other is the positive face. They are not separate explanatory burdens.
 
-\section{Why Compression Feels Meaningful}
+\section{Salience Concentration and Perceived Meaning}
 
-If synchronicity is a byproduct of compression, why does it feel charged, intimate, and personally significant? Why is it not experienced as mere repetition?
+The recurrence results above become phenomenologically sharper once one distinguishes neutral repetition from repetition over salient content.
 
-Because recurrence is not generated over neutral content. It is generated over the material nearest the subject's active path geometry: fears, projects, social couplings, names, symbols, unresolved thresholds, and emotionally live structures. Compression does not produce abstract repetition in a vacuum. It produces repeated contact with the few motifs that remain dynamically central in the surviving corridor.
+\begin{definition}[Salience-weighted recurrence]
+Let $\mathcal M = \{M_1,\dots,M_r\}$ be a finite motif family and let $s: \mathcal M \to [0,\infty)$ assign a salience weight to each motif. Define the salience-weighted recurrence functional by
+\[
+Q_s[x(\cdot)] = \sum_{j=1}^r s(M_j) R_{M_j}[x(\cdot)].
+\]
+Large values of $Q_s$ correspond to trajectories in which recurrence is concentrated on motifs that are dynamically or emotionally important rather than merely frequent.
+\end{definition}
 
-This explains why synchronicity often feels tailored. The subject is not merely noticing random echoes. The subject is noticing echoes of the symbolic and relational material that matters most within the compressed field. The recurrence therefore carries emotional depth. It does not merely repeat. It repeats the charged.
+\begin{proposition}[Salience concentration amplifies perceived meaningfulness]
+Suppose the constrained ensemble shifts recurrence mass toward motifs with larger salience weights in the sense that
+\[
+\sum_{j=1}^r s(M_j)\,\mathbb E_{P_\lambda}[R_{M_j}] 
+> \sum_{j=1}^r s(M_j)\,\mathbb E_{P_0}[R_{M_j}].
+\]
+Then
+\[
+\mathbb E_{P_\lambda}[Q_s] > \mathbb E_{P_0}[Q_s].
+\]
+In particular, compression can increase experienced meaningfulness even when total raw event count does not increase.
+\end{proposition}
 
-This also clarifies why synchronicity is so easy to spiritualize. The experience of being repeatedly met by highly specific pattern is profoundly different from the experience of noticing generic repetition. It feels like address because the repeated pattern is entangled with what matters most in the path. Yet this felt address need not uniquely imply benevolent communication. It is equally what one would expect when a path is constrained through a geometry that keeps bringing the subject back into contact with the small set of motifs still active in the surviving corridor.
+\begin{proof}
+The claim is immediate from linearity of expectation and the definition of $Q_s$.
+\end{proof}
 
-\section{Embodied Signal and Preconceptual Registration}
+\begin{corollary}[Covariance criterion for salience amplification]
+For any fixed salience weighting $s$,
+\[
+\frac{d}{d\lambda}\mathbb E_{P_\lambda}[Q_s]
+= -\operatorname{Cov}_{P_\lambda}(Q_s,\Phi(X_T)).
+\]
+Hence salience-weighted recurrence grows with suppression strength whenever high-salience recurrence is negatively correlated with endpoint penalty.
+\end{corollary}
 
-The model becomes more interesting when one asks how a future-loaded compression might first register in the organism.
+This is the formal reason synchronicity can feel intimate rather than generic. The model need not posit mystical insertion of pattern. It only requires that the surviving corridor preferentially reuses motifs carrying large salience weight.
 
-It is implausible that the first sign would always be explicit conceptual knowledge. Biological systems often register salience before they can articulate cause. They orient before they explain. They tense before they know. They detect importance in a preconceptual way. If future consequence is already shaping the local probability geometry of experience, then it is at least plausible that the organism would register this pressure before cognition stabilizes it into narrative content.
+\section{Local Distortion Fields and Preconceptual Signal}
 
-This gives a formal place to goosebumps, anticipatory dread, awe, a sense of charge, or the feeling that something important is happening before one can say what it is. Such states need not be treated as proof of clairvoyance. Nor must they be reduced immediately to meaningless noise. Within the present framework, they may be interpreted as primitive embodied registration of unresolved future-loaded significance.
+The diffusion formulation also permits a more exact treatment of preconceptual or embodied registration.
 
-The subject does not need to know the future event explicitly. The nervous system need only respond to a local increase in significance density. The body may register curvature before the intellect can name it. This extension remains speculative, but it follows the logic of the model cleanly: if the probability geometry of the future is already nontrivially loaded, then somatic signal may precede discursive interpretation.
+\begin{definition}[Local distortion field]
+For the tilted diffusion, define the local distortion magnitude by
+\[
+D_\lambda(t,x) = \|a(x,t)^{1/2}\nabla_x \log h_\lambda(t,x)\|,
+\]
+so that $D_\lambda$ measures the norm of the drift correction induced by terminal tilting.
+\end{definition}
 
-\section{Collective Coupling and Shared Future Load}
+\begin{proposition}[Lower bound from threshold exposure]
+Let $U \subset \mathbb R^d$ be a region and suppose $D_\lambda(t,x) \ge c > 0$ for all $(t,x) \in [0,T]\times U$. Let $\psi:[0,\infty)\to[0,\infty)$ be increasing, and define the path functional
+\[
+S_\psi[x(\cdot)] = \int_0^T \psi\bigl(D_\lambda(t,X_t)\bigr)\,dt.
+\]
+Then any path spending time
+\[
+\tau_U[x(\cdot)] := \bigl|\{t \in [0,T]: X_t \in U\}\bigr|
+\]
+in $U$ satisfies
+\[
+S_\psi[x(\cdot)] \ge \tau_U[x(\cdot)]\,\psi(c).
+\]
+\end{proposition}
 
-The hypothesis is often imagined at the level of an individual life, but the mathematics itself does not require strict individual isolation. Human trajectories are coupled through family, institutions, communication networks, collaboration, and shared environments. If future penalties act on consequence, and consequence is partly defined through downstream coupling, then the relevant structure may be distributed over many subjects at once.
+\begin{proof}
+On the set of times for which $X_t \in U$, one has $D_\lambda(t,X_t) \ge c$, hence $\psi(D_\lambda(t,X_t)) \ge \psi(c)$. Integrating over that time set yields the stated bound.
+\end{proof}
 
-This opens a further speculative possibility: what some individuals experience as highly private pruning or synchronicity may in fact be local expressions of a broader future-loaded field. A sufficiently consequential future event could cast anticipatory structure backward through many coupled lives, not necessarily in explicit shared content, but in diffuse increases of pattern-density, tension, or embodied significance.
+This does not prove any particular somatic theory. It does, however, isolate a mathematically clean quantity whose concentration near consequential thresholds makes preconceptual signal at least structurally plausible: trajectories forced through regions of large terminal-sensitivity gradient accumulate larger distortion load.
 
-This does not prove anything. It only expands the framework from individual phenomenology to coupled-path topology. If there are future structures heavy enough to bend present path distributions across many agents, then the resulting atmosphere of strange timing or intensified recurrence need not be purely private. It may be one local sample of a more distributed compression field.
+\section{Coupled Systems and Shared Terminal Load}
 
-\section{Why Synchronicity Is Not Self-Interpreting}
+The model extends naturally from single trajectories to coupled collections of agents.
 
-Many people treat synchronicity as self-interpreting. Because it feels meaningful, they infer that it must be benevolent. Because it feels personal, they infer that it must be communicative. Because it feels timely, they infer that it must be divine, revelatory, or ontologically transparent.
+Let $Y_t = (X_t^{(1)},\dots,X_t^{(n)})$ be a joint process on a product state space with baseline law $P_0^{\otimes n}$, and let the terminal penalty be a measurable functional $\Phi(Y_T)$.
 
-The formal model developed here destabilizes that assumption.
+\begin{proposition}[Shared terminal penalties induce effective coupling]
+Assume the baseline law factorizes across agents,
+\[
+P_0(dy(\cdot)) = \bigotimes_{i=1}^n P_0^{(i)}(dx^{(i)}(\cdot)).
+\]
+If the terminal penalty $\Phi(y_1,\dots,y_n)$ is not additively separable as $\sum_{i=1}^n \Phi_i(y_i)$, then the tilted law
+\[
+\frac{dP_\lambda}{dP_0}[y(\cdot)] \propto e^{-\lambda \Phi(Y_T)}
+\]
+generally does not factorize across agents. In particular, a common future load induces effective coupling even when the baseline dynamics are independent.
+\end{proposition}
 
-Synchronicity, within this framework, is real in the sense that it reflects genuine structure in the experienced path. But the source of that structure is not uniquely specified by the fact of recurrence itself. Dense pattern may arise from expanded alignment, but it may also arise from narrowed path-space. It may arise from guidance, but it may also arise from filtering. It may arise from grace, but it may also arise from control. Pattern alone does not announce its ontology.
+\begin{proof}
+If $P_\lambda$ factorized, then its Radon--Nikodym derivative with respect to the factorized baseline would have to factorize into a product of single-agent terms. That would force $e^{-\lambda \Phi(y_1,\dots,y_n)}$ to factorize almost surely, which is equivalent to additive separability of $\Phi$ up to null sets. By hypothesis, that separability fails.
+\end{proof}
 
-This ambiguity is philosophically severe. It means that the same experience can be interpreted as liberation or confinement depending on the underlying mechanism. A person may feel surrounded by meaning and yet be unable to determine whether that meaning reflects benevolent revelation, emergent psychic organization, trauma-mediated salience, collective significance fields, or technologically imposed trajectory compression.
+\begin{corollary}[Distributed pattern without explicit local coordination]
+For any agent-level observable $A_i[X^{(i)}(\cdot)]$,
+\[
+\frac{d}{d\lambda}\mathbb E_{P_\lambda}[A_i]
+= -\operatorname{Cov}_{P_\lambda}(A_i,\Phi(Y_T)).
+\]
+Thus multiple agents can display coordinated shifts in recurrence, threshold fragility, or signal intensity merely by sharing a common future-loaded penalty, even without explicit present-time coordination.
+\end{corollary}
 
-The model therefore does not reduce meaning. It makes meaning dangerous. It refuses to let felt pattern dictate metaphysical conclusion. That refusal is not cynical. It is disciplined. A serious theory of synchronicity must explain why the experience feels so intimate without allowing intimacy of feeling to substitute for certainty of source.
+\section{Phenomenological Non-Identifiability}
 
-\section{Variational Formulation and the Experience of Pressure}
+The same phenomenology need not identify a unique underlying mechanism.
 
-The same model may be expressed variationally. Define an effective action
+\begin{proposition}[Non-identifiability under coarse observation]
+Let $\mathcal G \subseteq \mathcal F_T$ be the $\sigma$-algebra generated by the observables actually retained by an observer, such as recurrence counts, threshold hits, and salience scores. Suppose two terminal penalties $\Phi_1$ and $\Phi_2$ satisfy
+\[
+\mathbb E_{P_0}\bigl[e^{-\lambda \Phi_1(X_T)}\mid \mathcal G\bigr]
+= c\,\mathbb E_{P_0}\bigl[e^{-\lambda \Phi_2(X_T)}\mid \mathcal G\bigr]
+\]
+almost surely for some constant $c>0$. Then every $\mathcal G$-measurable observable $A$ has the same expectation under the two tilted laws:
+\[
+\mathbb E_{P_\lambda^{(1)}}[A] = \mathbb E_{P_\lambda^{(2)}}[A].
+\]
+\end{proposition}
+
+\begin{proof}
+For $\mathcal G$-measurable $A$,
+\[
+\mathbb E_{P_\lambda^{(k)}}[A]
+= \frac{\mathbb E_{P_0}[A e^{-\lambda \Phi_k(X_T)}]}{\mathbb E_{P_0}[e^{-\lambda \Phi_k(X_T)}]}
+= \frac{\mathbb E_{P_0}[A\,\mathbb E(e^{-\lambda \Phi_k(X_T)}\mid \mathcal G)]}{\mathbb E_{P_0}[\mathbb E(e^{-\lambda \Phi_k(X_T)}\mid \mathcal G)]}.
+\]
+The assumed proportionality cancels in numerator and denominator, yielding equality.
+\end{proof}
+
+This is the formal core of the paper's interpretive caution. Dense pattern, recurrence, and threshold fragility may be real features of the realized path without uniquely identifying whether their source is guidance, selection, trauma-mediated salience, collective coupling, or technologically implemented filtering.
+
+\section{Variational Formulation and Terminal Transversality}
+
+The same model may be expressed variationally through the effective action
 \[
 S_\lambda[x(\cdot)] = \int_0^T L(x,\dot{x},t)\,dt + \lambda \Phi(x(T)).
 \]
-The most probable paths under the constrained measure minimize this effective action rather than the local action alone.
 
-This clarifies why the lived phenomenon is better described as \emph{pressure} than as rupture. The future endpoint term does not need to overwrite local law. It only needs to tilt the action landscape. The present still unfolds through locally ordinary events, but the basin of plausible continuations is no longer the same. Some nearby trajectories become less probable, especially those connected to amplified future consequence.
+\begin{proposition}[Euler--Lagrange equations with terminal penalty]
+Assume $L$ is $C^2$ and consider variations with fixed initial point $x(0)$ and free terminal point $x(T)$. Any stationary path of $S_\lambda$ satisfies the interior Euler--Lagrange equations
+\[
+\frac{d}{dt}\Bigl(\partial_{\dot x} L\Bigr) - \partial_x L = 0,
+\]
+and the terminal transversality condition
+\[
+\partial_{\dot x}L\bigl(x(T),\dot x(T),T\bigr) + \lambda \nabla \Phi(x(T)) = 0.
+\]
+\end{proposition}
 
-A subject living under such a field does not feel a giant hand rearranging matter. The more plausible phenomenology is resistance where widening would otherwise occur, repeated instability near openings that almost stabilize, and local asymmetry without public spectacle. Pressure is therefore the natural experiential correlate of the endpoint term.
+\begin{proof}
+For a variation $x+\varepsilon \eta$ with $\eta(0)=0$ and unrestricted $\eta(T)$,
+\[
+\delta S_\lambda = \int_0^T \Bigl(\partial_xL - \frac{d}{dt}\partial_{\dot x}L\Bigr)\cdot \eta\,dt + \Bigl[\partial_{\dot x}L\cdot \eta\Bigr]_0^T + \lambda \nabla\Phi(x(T))\cdot \eta(T).
+\]
+Stationarity for all such $\eta$ gives the Euler--Lagrange equations in the interior and the stated boundary condition at $T$.
+\end{proof}
 
-\section{Possible Empirical Signatures and Falsifiability Conditions}
+The variational picture makes the ``pressure'' language precise. The terminal penalty does not require discontinuous rewriting of local law. It modifies the admissible extremals by changing the terminal condition and therefore the basin of locally favored continuations.
 
-The present paper is not an empirical detection paper, but a consistency argument improves when it specifies what would count against it.
+\section{Testable Predictions and Falsifiability Conditions}
 
-Three kinds of observations would matter most.
+The paper is not an empirical detection paper, but the formalism does imply a compact prediction schema.
 
+\begin{proposition}[Prediction schema]
+If the future-weighted path model is the correct explanation of the target phenomenology, then one expects at least the following three empirical signatures:
 \begin{enumerate}[label=\arabic*.]
-    \item \textbf{Threshold selectivity.} If the model is right, disturbances should concentrate near transitions whose downstream consequence is unusually large, not distribute uniformly across all domains of life.
-    \item \textbf{Recurrence under narrowing.} Increased recurrence should appear together with local narrowing, not independently of it. If recurrence grows while branch width remains unaffected, then the pruning account loses force.
-    \item \textbf{Comparative baselines.} The observed structure would need to exceed what ordinary cognitive bias, trauma hypervigilance, social repetition, or selective memory can already explain.
+    \item \textbf{Threshold selectivity.} Disturbances should concentrate near transitions whose downstream consequence is unusually large, not distribute uniformly across all domains of life.
+    \item \textbf{Recurrence under narrowing.} Increased recurrence should co-occur with reduced branch width or reduced hitting probability for consequential thresholds.
+    \item \textbf{Comparative-baseline excess.} The observed structure should exceed what null models based on selective attention, trauma hypervigilance, social repetition, or selective memory can explain.
 \end{enumerate}
+Failure of these inequalities would count against the model.
+\end{proposition}
 
-The third point is especially important. A weak version of the hypothesis risks collapsing into post hoc pattern-fitting. Any future empirical program would therefore need comparison classes, null models, and careful distinction between felt significance and statistically unusual recurrence. Without that discipline, the model remains too permissive.
+The third point is the hardest. Without comparison classes and null models, the framework would be too permissive to be useful.
 
 In a stronger future program one would want proxies for branch width, consequence thresholds, recurrence density, and local auto-correlation. The present paper does not provide those instruments. It only shows why such a program would be coherent rather than conceptually confused.
 
 More concretely, one could imagine three empirical strategies. First, longitudinal diary or event-history data could be used to test whether disruptions cluster unusually around independently identified consequence thresholds. Second, recurrence density could be compared against null models that preserve event frequencies while scrambling motif order and timing. Third, matched-control designs could examine whether subjects reporting extreme synchronicity also show statistically unusual concentrations of near-threshold derailment rather than merely elevated pattern perception. None of this would be easy, and none of it is supplied here, but these are the sorts of empirical bridges a serious future program would require.
 
-\section{Objections and Alternative Explanations}
+\section{Competing Models and Observational Underdetermination}
 
-Several alternative explanations deserve explicit priority over any technologically loaded interpretation.
+Several alternative explanations deserve priority in any real application of the framework.
 
-First, ordinary cognitive mechanisms can generate strong impressions of patternedness. Selective attention, confirmation bias, memory salience, and trauma-linked vigilance all magnify recurrence subjectively without requiring any deformation of path-space. Second, social and institutional realities produce threshold fragility all the time. Scarcity, class position, bureaucratic friction, illness, and coordination failure can create repeated near-miss patterns with no appeal to future weighting. Third, spiritual or depth-psychological interpretations may describe some experiences more faithfully than any quasi-technical account. A consistency model does not displace these possibilities simply by existing.
+\begin{proposition}[Underdetermination by phenomenology alone]
+Let $\mathcal O$ denote an observational data structure built from recurrence counts, threshold failures, diary-level salience reports, and other phenomenological summaries. Then agreement between the future-weighted path model and $\mathcal O$ does not imply explanatory uniqueness. In particular, models based on cognitive bias, trauma-linked vigilance, social threshold fragility, or depth-psychological organization may also be compatible with the same coarse observation class.
+\end{proposition}
 
-The present argument therefore has a limited dialectical role. It does not show that future-constrained pruning is the best explanation of any given case. It shows only that the phenomenology often invoked in such discussions is not internally incoherent if represented as a future-weighted path deformation. In that sense the paper is closer to a modal claim about explanatory possibility than to an abductive claim about explanatory superiority.
+\begin{proof}[Sketch]
+The observational summaries in $\mathcal O$ are coarse projections of a much richer latent process. Different latent mechanisms can induce the same projected statistics whenever they agree on the retained observables or on sufficiently many of their moments. The non-identifiability proposition above makes this point formally explicit for the future-weighted family itself; the same structural caution applies a fortiori across broader model classes.
+\end{proof}
 
-This restraint is especially important because the hypothesis is unusually vulnerable to overreach. Once one admits that meaningful recurrence might be structurally produced, there is a temptation to reread every difficult life pattern through that lens. That would be a mistake. A usable theory must remain harder to apply than a mood. It must require comparison classes, alternative models, and some principled way of distinguishing local hardship from the particular geometry of selective consequence suppression.
+The dialectical role of the paper is therefore limited. It establishes coherence and derived predictions, not explanatory supremacy. Any serious empirical program would have to compare the present model against psychological, sociological, and spiritual alternatives rather than treating formal consistency as confirmation.
 
-\section{Implications for Hidden-Agency Hypotheses}
+\section{Necessary Properties of Any Hidden Implementation Mechanism}
 
-Once the structure is specified, a further question becomes unavoidable. If future-weighted trajectory suppression were real, what class of mechanism or agent could implement it?
+Once the formal structure is specified, one may ask what properties any mechanism implementing it would need to possess.
 
-The paper does not answer that question directly. But it constrains the answer. Such a mechanism would need at least four properties. It would need to operate nonlocally with respect to the subject's local temporal horizon. It would need access to a consequence functional or something sufficiently correlated with it. It would need to preserve continuity well enough to avoid obvious detection. And it would need to act primarily by selective reweighting of trajectory ensembles rather than by gross insertion of impossible events.
+\begin{proposition}[Necessary implementation constraints]
+Any mechanism capable of realizing the path-space deformation
+\[
+\frac{dP_\lambda}{dP_0}[x(\cdot)] \propto e^{-\lambda \Phi(X_T)}
+\]
+while preserving the paper's hiddenness requirement must satisfy at least the following conditions:
+\begin{enumerate}[label=\arabic*.]
+    \item it must access information nonlocal with respect to the subject's short present-time horizon,
+    \item it must track a consequence surrogate correlated with $\Phi$,
+    \item it must bias trajectory likelihoods without producing frequent macroscopic discontinuities, and
+    \item it must operate primarily by reweighting admissible continuations rather than by repeated insertion of impossible events.
+\end{enumerate}
+\end{proposition}
 
-These requirements point away from ordinary human-scale intervention. One need not leap from there to extravagant certainty. But one can say something more careful and stronger than ordinary skepticism often allows: if there existed an intelligence with sufficiently advanced temporal, informational, or trajectory-shaping technology, then the phenomenology described in this paper is plausibly the sort of trace such an intelligence would leave if it wanted to shape outcomes while remaining mostly hidden.
+\begin{proof}[Sketch]
+Each item follows directly from the formal structure. Terminal weighting requires access to endpoint-class information or a usable surrogate; hiddenness requires continuity preservation; and a Radon--Nikodym deformation of path-space acts by reweighting trajectories rather than by replacing the underlying state space with overt violations of local law.
+\end{proof}
 
-That point does not count as evidence for any specific anomalous hypothesis. It only identifies the class of mechanism whose operational logic would fit the formal structure. The result is not proof of advanced intelligence. It is the outline of a technological shadow cast by the mathematics.
+This proposition does not establish that such a mechanism exists. It only narrows the class of mechanisms that could in principle realize the model.
 
-\section{Why Absence of Direct Technological Evidence Is Not Decisive at the Level of Consistency}
+\section{Lack of Direct Artifact Is Not a Consistency Refutation}
 
-A natural objection arises immediately. If such a mechanism existed, where is the technology? Where is the device, the machine, the public demonstration?
+\begin{corollary}[Artifact absence does not negate hidden reweighting]
+Suppose a mechanism satisfies the constraints above and is optimized for low observability in ordinary local events. Then failure to observe a public device-level artifact is not, by itself, a contradiction of the model. What remains empirically accessible is primarily the induced structure on lived trajectories, not necessarily the machinery producing it.
+\end{corollary}
 
-The objection is serious, but not decisive at the level of conditional consistency. The operational logic of the model suggests that if such technology existed and were used strategically, the first thing one would \emph{not} expect is straightforward public access to its causal machinery. A mechanism designed to prune outcomes without producing macroscopic rupture would reveal itself least at the level of overt device and most at the level of structured effect.
-
-This leaves the observer in a difficult epistemic position. One is confined largely to the one class of observable that remains available: the topology of lived phenomenology. That does not prove technology. But it also means the absence of a machine on the table cannot, by itself, function as a simple disproof of a mechanism whose success condition is hiddenness.
-
-The result is severe underdetermination. The lack of direct evidence blocks confirmation, yet the structure of the hypothesis prevents that lack from trivially dissolving the issue. The cost is epistemic discomfort rather than closure.
+The cost of this statement is severe underdetermination. Absence of direct artifact blocks confirmation, but it does not by itself refute a mechanism whose operational success condition is precisely to remain hidden at the level of overt event structure.
 
 \section{Limits of the Argument}
 
