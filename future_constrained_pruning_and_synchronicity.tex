@@ -22,6 +22,7 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{remark}{Remark}
 \newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
 
 \title{\textbf{Future-Constrained Pruning and Synchronicity: A Path-Space Consistency Argument}}
 \author{}
@@ -32,7 +33,7 @@
 \maketitle
 
 \begin{abstract}
-This paper develops a formal consistency argument for a speculative but constrained hypothesis: if human life-trajectories were selectively reweighted by future-dependent penalties, then reports commonly described as narrowing, threshold fragility, heightened synchronicity, repeated near-miss, and anticipatory somatic charge could arise as lawful consequences of the deformation rather than as arbitrary narrative embellishments. The claim is not that temporal intervention technology has been empirically established, nor that anomalous experiences or reports of synchronicity constitute scientific proof of such intervention. The claim is narrower. A mathematically coherent class of path-space models exists in which the present need not be violently rewritten in order to be shaped from ahead. A future endpoint penalty can reweight the ensemble of admissible trajectories while preserving most local continuity. Under such a deformation, high-consequence openings become selectively fragile, routine continuity remains largely intact, and the surviving stream of realized events becomes denser with recurrence, motif reuse, and felt significance. In that framework, pruning and synchronicity are dual manifestations of the same compression of path-space. The paper sharpens the hypothesis in five ways. First, it places the model in an explicit Gibbs-type reweighting of path measures and relates it to familiar constructions from stochastic control, Doob transforms, and Schr\"odinger bridge problems. Second, it formalizes pruning through selective reduction of branch entropy rather than vague metaphors of blockage. Third, it derives monotonic selection pressure through a simple free-energy identity. Fourth, it derives synchronicity as the sample-path signature of corridor compression and elevated recurrence. Fifth, it clarifies the interpretive instability created by that result: synchronicity cannot be treated as self-interpreting evidence of benevolent guidance if the same phenomenology could also arise from filtering, selection, or technologically mediated temporal constraint. The paper remains explicitly speculative throughout. It offers neither empirical confirmation nor a detection theorem. Its contribution is to show that if future-constrained suppression were real, then the reported phenomenology would be mathematically coherent with it, phenomenologically recognizable from within it, and potentially investigable through comparative recurrence and threshold-fragility analyses.
+This paper develops a formal consistency argument for a speculative but constrained hypothesis: if human life-trajectories were selectively reweighted by future-dependent penalties, then reports commonly described as narrowing, threshold fragility, heightened synchronicity, repeated near-miss, and anticipatory somatic charge could arise as lawful consequences of the deformation rather than as arbitrary narrative embellishments. The claim is not that temporal intervention technology has been empirically established, nor that anomalous experiences or reports of synchronicity constitute scientific proof of such intervention. The claim is narrower. A mathematically coherent class of path-space models exists in which the present need not be violently rewritten in order to be shaped from ahead. A future endpoint penalty can reweight the ensemble of admissible trajectories while preserving most local continuity. Under such a deformation, high-consequence openings become selectively fragile, routine continuity remains largely intact, and the surviving stream of realized events becomes denser with recurrence, motif reuse, and felt significance. In that framework, pruning and synchronicity are dual manifestations of the same compression of path-space. The paper sharpens the hypothesis in six linked ways. First, it places the model in an explicit Gibbs-type reweighting of path measures and relates it to familiar constructions from stochastic control, Doob transforms, and Schr\"odinger bridge problems. Second, it formalizes pruning through selective reduction of branch entropy rather than vague metaphors of blockage. Third, it derives monotonic selection pressure, observable response identities, and informational divergence growth from the same free-energy calculus. Fourth, it gives a continuous-time diffusion realization through Doob-transformed drift distortion. Fifth, it recasts that same structure as a value-function/Hamilton--Jacobi--Bellman problem with a desirability transform. Sixth, it derives synchronicity, salience concentration, coupling, and interpretive instability as lawful consequences of corridor compression rather than as independent mysteries. The paper remains explicitly speculative throughout. It offers neither empirical confirmation nor a detection theorem. Its contribution is to show that if future-constrained suppression were real, then the reported phenomenology would be mathematically coherent with it, phenomenologically recognizable from within it, and potentially investigable through comparative recurrence and threshold-fragility analyses.
 \end{abstract}
 
 \section{Introduction}
@@ -62,6 +63,39 @@ Throughout the paper, the term \emph{synchronicity} is used in a restricted phen
 This distinction matters because there is a large difference between a narrative that can be retrofitted onto ambiguous experience and a structure that predicts nontrivial features of experience from independently specified assumptions. The present paper aims for the latter. It begins not with the phenomenology itself but with a path-space reweighting principle. From that it derives entropy reduction, selectivity near consequence boundaries, greater recurrence in realized paths, and the interpretive ambiguity of meaningful recurrence.
 
 One further epistemic point matters. If the mechanism under consideration is subtle enough, direct technological evidence may be precisely what one should least expect to have. A path-filtering process designed to preserve continuity while biasing outcomes would not announce itself through overt, persistent public artifact. That does not confirm the model. It only means that the lack of overt artifact, while blocking confirmation, does not by itself dissolve the formal problem. Rather, it moves the argument into a harder domain: the topology of lived effects.
+
+\section{Standing Notation and Assumptions}
+
+For readability, the paper keeps the following notation fixed throughout.
+
+\begin{description}[leftmargin=2.2cm, style=nextline]
+    \item[$T$] finite time horizon.
+    \item[$X_t$ or $x(t)$] state of the subject or system at time $t$.
+    \item[$P_0$] baseline path law or unconstrained reference ensemble.
+    \item[$P_\lambda$] future-weighted or tilted path law.
+    \item[$\Phi$] terminal penalty or consequence-linked endpoint cost.
+    \item[$\lambda$] suppression or selection-strength parameter.
+    \item[$h_\lambda(t,x)$] terminal desirability function, defined by conditional expectation of $e^{-\lambda \Phi(X_T)}$.
+    \item[$B_\lambda(t)$] branch entropy under the tilted law.
+    \item[$\tau_A$ and $H_\lambda(t,x;A)$] hitting time of a threshold set $A$ and its tilted hitting probability.
+    \item[$R_M$ and $Q_s$] raw and salience-weighted motif-recurrence functionals.
+\end{description}
+
+The formal results are conditional on three standing assumptions.
+
+\begin{assumption}[Well-posed baseline and integrability]
+The horizon satisfies $T<\infty$, the baseline path law $P_0$ is well defined on the admissible trajectory space, the partition function $Z_\lambda$ is finite and strictly positive for the values of $\lambda$ under discussion, and all observables differentiated with respect to $\lambda$ are integrable under the relevant tilted laws.
+\end{assumption}
+
+\begin{assumption}[Hidden-deformation regime]
+The tilted law remains absolutely continuous with respect to the baseline law, $P_\lambda \ll P_0$, and the parameter $\lambda$ lies in an intermediate regime: large enough to generate nontrivial selection, but not so large as to force singular collapse, trivialization, or obvious macroscopic breakdown of continuity.
+\end{assumption}
+
+\begin{assumption}[Smooth Markov realization when invoked]
+Whenever the paper passes from the abstract path-measure formulation to diffusion, PDE, or control-theoretic realizations, coefficients are assumed regular enough for the stated It\^o, Girsanov, backward Kolmogorov, HJB, and transversality arguments to hold in classical form. Without such smoothness, the same statements should be read in weak or viscosity-solution form.
+\end{assumption}
+
+These assumptions do not make the model true. They simply specify the regime in which the paper's later propositions are mathematically well posed and interpretable as hidden deformation rather than overt rupture.
 
 \section{Formal Setup: Life-Trajectories as Paths in State Space}
 
@@ -718,6 +752,8 @@ The broader consequence is interpretive instability. Pattern may be real, yet it
 If some sufficiently advanced intelligence possessed the capacity to shape human trajectories through hidden future-dependent constraints, then the first place such a mechanism might become visible would not necessarily be in a machine or a public demonstration. It would more likely become visible in the shape of lived reality under compression. The trace would be phenomenological before it was technological. That is why the problem matters and why it cannot be dismissed simply because its mechanism has not been laid on a table.
 
 Nothing here proves that we live in such a world. But it does show that if we did, the world could plausibly feel narrower in what matters, denser in pattern, stranger in timing, and harder to interpret than ordinary explanatory categories are prepared to admit.
+
+At the formal level, the paper's main payoff is that the same structure can now be read in three mathematically consistent ways: as a Gibbs tilt on path-space, as a Doob-transformed diffusion with modified drift, and, under the control-theoretic matching condition, as a desirability/HJB problem with an equivalent value landscape. That equivalence is what gives the hypothesis more than rhetorical coherence. It gives it a real mathematical skeleton.
 
 \appendix
 
