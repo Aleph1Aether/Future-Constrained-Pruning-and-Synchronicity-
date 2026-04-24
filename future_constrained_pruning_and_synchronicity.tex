@@ -220,6 +220,92 @@ This proposition matters because it translates the terminal weighting into a pre
 
 The same representation clarifies hiddenness. The diffusion coefficient is unchanged. Only the drift is modified, and it is modified through the logarithmic gradient of the terminal desirability function $h_\lambda$. This is exactly the kind of subtle distortion one would expect if outcomes were being biased while surface continuity remained mostly intact.
 
+\section{Value Functions, HJB Equations, and Desirability}
+
+The diffusion picture becomes tighter still when recast as an optimal-control problem. This makes the paper's informal language of pressure and selective steering mathematically explicit.
+
+Consider a controlled diffusion
+\[
+dX_t^u = \bigl(b(X_t^u,t) + B(X_t^u,t)u_t\bigr)dt + \sigma(X_t^u,t)dW_t,
+\qquad X_t^u = x,
+\]
+where $u_t \in \mathbb R^k$ is an admissible control, $B(x,t) \in \mathbb R^{d\times k}$ is the control matrix, and $R(x,t)$ is a positive-definite control-cost matrix. Let the running and terminal costs be
+\[
+\ell(x,t) \ge 0,
+\qquad
+\Phi(x) \ge 0,
+\]
+and define the cost functional
+\[
+J_\lambda(t,x;u) = \mathbb E\Bigl[\int_t^T \Bigl(\ell(X_s^u,s) + \tfrac12 u_s^\top R(X_s^u,s)u_s\Bigr)ds + \lambda \Phi(X_T^u)\,\Big|\,X_t^u=x\Bigr].
+\]
+The value function is
+\[
+V_\lambda(t,x) = \inf_u J_\lambda(t,x;u).
+\]
+
+\begin{proposition}[Hamilton--Jacobi--Bellman equation]
+Assume the dynamic-programming principle holds and that $V_\lambda$ is sufficiently smooth. Then $V_\lambda$ satisfies the HJB equation
+\[
+-\partial_t V_\lambda(t,x)
+= \inf_{u \in \mathbb R^k}
+\Bigl\{
+\ell(x,t) + \tfrac12 u^\top R(x,t)u + \bigl(b(x,t)+B(x,t)u\bigr)\cdot \nabla V_\lambda(t,x)
++ \tfrac12 \operatorname{tr}\bigl(a(x,t)\nabla^2 V_\lambda(t,x)\bigr)
+\Bigr\},
+\]
+with terminal condition
+\[
+V_\lambda(T,x) = \lambda \Phi(x).
+\]
+If $R$ is positive definite, the minimizing feedback is
+\[
+u_t^* = -R(X_t^*,t)^{-1} B(X_t^*,t)^\top \nabla V_\lambda(t,X_t^*),
+\]
+and the HJB reduces to
+\[
+-\partial_t V_\lambda
+= \ell + b\cdot \nabla V_\lambda + \tfrac12 \operatorname{tr}(a\nabla^2 V_\lambda)
+- \tfrac12 \nabla V_\lambda^\top B R^{-1}B^\top \nabla V_\lambda.
+\]
+\end{proposition}
+
+\begin{proof}[Sketch]
+Apply the dynamic-programming principle over a short interval $[t,t+\Delta t]$, expand by It\^o's formula, divide by $\Delta t$, and let $\Delta t \downarrow 0$. The minimizer in $u$ is obtained by completing the square in the Hamiltonian, which gives the stated feedback and reduced nonlinear PDE \cite{fleming2006, whittle1990}. 
+\end{proof}
+
+This equation identifies a genuine value landscape over state-space. The gradient $\nabla V_\lambda$ measures the local marginal cost of displacement, so the optimal feedback moves against that gradient. In plain language, the system does not need to ``break'' local law to narrow trajectories. It only has to reshape the value surface so that some continuations become increasingly expensive to sustain.
+
+\begin{corollary}[Linearly solvable / desirability form]
+Assume the control and noise satisfy the matching condition
+\[
+B(x,t)R(x,t)^{-1}B(x,t)^\top = a(x,t),
+\]
+and define the desirability transform
+\[
+\psi_\lambda(t,x) = e^{-V_\lambda(t,x)}.
+\]
+Then $\psi_\lambda$ solves the linear backward PDE
+\[
+\partial_t \psi_\lambda + b\cdot \nabla \psi_\lambda + \tfrac12 \operatorname{tr}(a\nabla^2 \psi_\lambda) - \ell\,\psi_\lambda = 0,
+\]
+with terminal condition
+\[
+\psi_\lambda(T,x) = e^{-\lambda \Phi(x)}.
+\]
+In the special case $\ell \equiv 0$, one has $\psi_\lambda = h_\lambda$, and the optimal controlled drift becomes
+\[
+b^*(x,t) = b(x,t) + a(x,t)\nabla \log \psi_\lambda(t,x),
+\]
+recovering the Doob-transformed drift from the tilted path measure.
+\end{corollary}
+
+\begin{proof}[Sketch]
+Insert $V_\lambda = -\log \psi_\lambda$ into the reduced HJB equation. The quadratic gradient term cancels exactly under the matching condition, leaving the stated linear PDE. The terminal condition follows immediately from $V_\lambda(T,x)=\lambda\Phi(x)$. When $\ell\equiv 0$, the linear PDE coincides with the backward Kolmogorov equation for $h_\lambda$, hence $\psi_\lambda=h_\lambda$ by uniqueness.
+\end{proof}
+
+This corollary is the cleanest bridge between the paper's path-space story and standard control theory. Terminal penalties, desirability functions, and hidden drift distortions are not three unrelated metaphors. Under the linearly solvable control structure they are the same object written in three equivalent languages.
+
 \section{Regularity Conditions and the Mathematics of Hiddenness}
 
 The model remains coherent only if the reweighting is constrained. Not every endpoint penalty produces subtle pruning. Some would force visible rupture, degeneration of continuity, or measure-theoretic pathologies incompatible with the intended phenomenology.
@@ -670,6 +756,11 @@ Bulletin de la Soci\'et\'e Math\'ematique de France, 85 (1957), 431--458.
 P. Dupuis and R. S. Ellis,
 \emph{A Weak Convergence Approach to the Theory of Large Deviations},
 Wiley, New York, 1997.
+
+\bibitem{fleming2006}
+W. H. Fleming and H. M. Soner,
+\emph{Controlled Markov Processes and Viscosity Solutions},
+2nd ed., Springer, New York, 2006.
 
 \bibitem{jung1952}
 C. G. Jung,
