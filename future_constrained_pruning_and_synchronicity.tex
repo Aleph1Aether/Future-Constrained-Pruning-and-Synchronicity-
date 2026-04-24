@@ -85,9 +85,9 @@ That deformation explains why the phenomenology would be subtle. If the mechanis
 
 \section{Relation to Existing Formal Frameworks}
 
-The mathematics introduced above is not exotic in itself. Endpoint-tilted path measures, change-of-measure arguments, and exponential reweightings already appear in several established areas of probability and control theory, including Doob $h$-transforms, Gibbs conditioning, Schr"odinger bridge problems, large-deviation tilts, and risk-sensitive control \cite{doob1957, whittle1990, dupuis1997, leonard2014, todorov2009}. The novelty of the present paper is therefore interpretive rather than mathematical. It does not claim to invent a new path-measure formalism. It claims that a familiar formal device, when interpreted as acting on human life-trajectories rather than particles or controlled diffusions, yields a distinctive phenomenological picture.
+The mathematics introduced above is not exotic in itself. Endpoint-tilted path measures, change-of-measure arguments, and exponential reweightings already appear in several established areas of probability and control theory, including Doob $h$-transforms, Gibbs conditioning, Schr\"odinger bridge problems, large-deviation tilts, and risk-sensitive control \cite{doob1957, whittle1990, dupuis1997, leonard2014, todorov2009}. The novelty of the present paper is therefore interpretive rather than mathematical. It does not claim to invent a new path-measure formalism. It claims that a familiar formal device, when interpreted as acting on human life-trajectories rather than particles or controlled diffusions, yields a distinctive phenomenological picture.
 
-This point matters for rigor. The proposal should not be read as ``time travel by notation.'' It is better understood as a terminal-cost deformation of a baseline path ensemble. In standard stochastic-control language, the endpoint penalty plays the role of a terminal cost or desirability distortion. In Doob-transform language, it acts as an endpoint-dependent change of measure on trajectories. In Schr"odinger-bridge language, one may think of it as a terminal marginal preference that changes which path families are favored. None of these analogies validates the speculative interpretation advanced later in the paper. They simply show that the underlying mathematical move is well formed.
+This point matters for rigor. The proposal should not be read as ``time travel by notation.'' It is better understood as a terminal-cost deformation of a baseline path ensemble. In standard stochastic-control language, the endpoint penalty plays the role of a terminal cost or desirability distortion. In Doob-transform language, it acts as an endpoint-dependent change of measure on trajectories. In Schr\"odinger-bridge language, one may think of it as a terminal marginal preference that changes which path families are favored. None of these analogies validates the speculative interpretation advanced later in the paper. They simply show that the underlying mathematical move is well formed.
 
 To make that selection pressure explicit, define the log-partition functional
 \[
@@ -172,6 +172,54 @@ integrate against $P_\lambda$ to obtain the first identity. Differentiating and 
 
 The interpretive point is straightforward. As $\lambda$ increases, the constrained world not only selects different endpoint classes. It becomes quantitatively less typical relative to the unconstrained ensemble in an information-theoretic sense. This gives a more exact expression to the informal idea that the realized corridor becomes increasingly ``non-generic.''
 
+\section{Filtered Probability Spaces and Continuous-Time Diffusions}
+
+The preceding formulation is measure-theoretic but abstract. To make the model more genuinely mathematical, it helps to place it on a filtered probability space and exhibit an explicit continuous-time realization.
+
+Let $(\Omega,\mathcal F,(\mathcal F_t)_{0\le t\le T},P_0)$ be a filtered probability space supporting an $m$-dimensional Brownian motion $W_t$. Let $X_t$ be an $\mathbb R^d$-valued It\^o diffusion under the baseline measure $P_0$ solving
+\[
+dX_t = b(X_t,t)\,dt + \sigma(X_t,t)\,dW_t,
+\qquad X_0 = x,
+\]
+where $b: \mathbb R^d \times [0,T] \to \mathbb R^d$ is the drift, $\sigma: \mathbb R^d \times [0,T] \to \mathbb R^{d\times m}$ is the diffusion coefficient, and $a(x,t)=\sigma(x,t)\sigma(x,t)^\top$.
+
+Let $\Phi: \mathbb R^d \to \mathbb R$ be a measurable terminal penalty, and define the tilted measure on $(\Omega,\mathcal F_T)$ by
+\[
+\frac{dP_\lambda}{dP_0}
+= \frac{e^{-\lambda \Phi(X_T)}}{\mathbb E_{P_0}[e^{-\lambda \Phi(X_T)}]}.
+\]
+For $0 \le t \le T$, define the positive martingale density process
+\[
+M_t = \mathbb E_{P_0}\!\left[\left.\frac{dP_\lambda}{dP_0}\right|\mathcal F_t\right]
+= \frac{\mathbb E_{P_0}[e^{-\lambda \Phi(X_T)}\mid \mathcal F_t]}{Z_\lambda}.
+\]
+
+In the Markov setting, write
+\[
+h_\lambda(t,x) = \mathbb E_{P_0}\bigl[e^{-\lambda \Phi(X_T)} \mid X_t=x\bigr].
+\]
+Then $M_t = h_\lambda(t,X_t)/h_\lambda(0,x)$.
+
+\begin{proposition}[Doob-transformed diffusion dynamics]
+Assume $h_\lambda$ is strictly positive and $C^{1,2}$, and that the usual regularity conditions for Girsanov's theorem hold. Then under the tilted measure $P_\lambda$, the process $X_t$ is again an It\^o diffusion with the same diffusion coefficient $\sigma$ and drift
+\[
+b_\lambda(x,t) = b(x,t) + a(x,t)\nabla_x \log h_\lambda(t,x).
+\]
+Equivalently,
+\[
+dX_t = b_\lambda(X_t,t)\,dt + \sigma(X_t,t)\,dW_t^{(\lambda)},
+\]
+where $W_t^{(\lambda)}$ is a Brownian motion under $P_\lambda$.
+\end{proposition}
+
+\begin{proof}[Sketch]
+The density process $M_t$ defines an absolutely continuous change of measure on $\mathcal F_t$. By It\^o's formula applied to $h_\lambda(t,X_t)$ and the backward Kolmogorov equation satisfied by $h_\lambda$, one identifies the stochastic logarithm of $M_t$. Girsanov's theorem then shifts the drift by $a\nabla_x \log h_\lambda$, while leaving the diffusion coefficient unchanged. This is the standard Doob $h$-transform for terminally tilted diffusions \cite{doob1957, karatzas1991, oksendal2003}.
+\end{proof}
+
+This proposition matters because it translates the terminal weighting into a present-time dynamical distortion. The future-dependent penalty does not merely reorder completed trajectories after the fact. In the diffusion realization it induces a local drift correction in the present. One thereby obtains a mathematically precise version of the paper's core intuition: the future constraint can ``lean'' on present evolution without requiring overt discontinuity.
+
+The same representation clarifies hiddenness. The diffusion coefficient is unchanged. Only the drift is modified, and it is modified through the logarithmic gradient of the terminal desirability function $h_\lambda$. This is exactly the kind of subtle distortion one would expect if outcomes were being biased while surface continuity remained mostly intact.
+
 \section{Regularity Conditions and the Mathematics of Hiddenness}
 
 The model remains coherent only if the reweighting is constrained. Not every endpoint penalty produces subtle pruning. Some would force visible rupture, degeneration of continuity, or measure-theoretic pathologies incompatible with the intended phenomenology.
@@ -251,6 +299,46 @@ The consequence-based penalty introduces threshold geometry into lived time. The
 This yields a distinctive pattern: repeated near-miss. The subject does not simply fail randomly. The subject repeatedly approaches forms of widening and then drifts, stalls, fragments, or gets rerouted just short of durable transition. This is the source of the lived sense of almostness. The structure is not generic denial. It is recurrent approach without passage.
 
 Formally, let $\Gamma_a$ denote the set of future paths that pass through a neighborhood of a threshold surface $a$ beyond which consequence rises sharply. If reaching that region greatly increases $C$, then the conditional penalty on trajectories entering $\Gamma_a$ rises as the subject approaches it. The local probability flow bends away from threshold crossing while preserving local plausibility. The subject still feels agency and participates in ordinary life, but the surrounding distribution has become hostile to widening.
+
+This statement can be sharpened by treating threshold crossing as a stopping-time event. Let $A \subset \mathbb R^d$ be a target region representing a consequential widening threshold, and define the first hitting time
+\[
+\tau_A = \inf\{s \ge t : X_s \in A\}.
+\]
+For $0 \le t \le T$, define the tilted hitting probability
+\[
+H_\lambda(t,x;A) = P_\lambda^{t,x}(\tau_A \le T),
+\]
+where $P_\lambda^{t,x}$ denotes the tilted law started from $X_t=x$.
+
+\begin{proposition}[Threshold-crossing response]
+Assume $\mathbf 1_{\{\tau_A\le T\}}$ and $\Phi(X_T)$ are integrable under $P_\lambda^{t,x}$. Then
+\[
+\frac{d}{d\lambda}H_\lambda(t,x;A)
+= -\operatorname{Cov}_{P_\lambda^{t,x}}\!\bigl(\mathbf 1_{\{\tau_A\le T\}},\Phi(X_T)\bigr).
+\]
+Consequently, if threshold crossing is positively correlated with penalized endpoints, then $H_\lambda(t,x;A)$ is strictly decreasing in $\lambda$.
+\end{proposition}
+
+\begin{proof}
+Apply the observable-response identity to the path observable
+\[
+A[X(\cdot)] = \mathbf 1_{\{\tau_A\le T\}}.
+\]
+The derivative of its expectation under the tilted measure is the negative covariance with the endpoint penalty.
+\end{proof}
+
+This proposition gives the paper's repeated near-miss claim a direct mathematical form. A threshold becomes fragile precisely when reaching it is statistically entangled with future endpoint classes that are being down-weighted. Near-miss is therefore not merely narrative texture. It is the expected hitting-probability signature of a future-penalized ensemble.
+
+In diffusion language, one may express the same idea through a backward equation. Under sufficient smoothness, $H_\lambda$ solves
+\[
+\partial_t H_\lambda + \mathcal L_\lambda H_\lambda = 0
+\quad\text{on}\quad ([0,T)\times A^c),
+\]
+with boundary/terminal conditions encoding absorption on $A$, where $\mathcal L_\lambda$ is the tilted generator
+\[
+\mathcal L_\lambda f = b_\lambda \cdot \nabla f + \tfrac12 \operatorname{tr}\!\bigl(a\nabla^2 f\bigr).
+\]
+Thus future endpoint weighting alters threshold crossing not only globally by selection of trajectories, but locally through a changed generator that suppresses flow into consequence-linked regions.
 
 \begin{remark}
 This threshold geometry gives the model a sharper signature than generic adversity. The hypothesis predicts not global misfortune but concentrated fragility near branches whose downstream consequence is large. Ordinary hardship is common. Repeated threshold-specific deflection has a different texture.
@@ -462,10 +550,20 @@ C. G. Jung,
 \emph{Synchronicity: An Acausal Connecting Principle},
 Princeton University Press, Princeton, 1952.
 
+\bibitem{karatzas1991}
+I. Karatzas and S. E. Shreve,
+\emph{Brownian Motion and Stochastic Calculus},
+2nd ed., Springer, New York, 1991.
+
 \bibitem{leonard2014}
 C. L\'eonard,
 \emph{A survey of the Schr\"odinger problem and some of its connections with optimal transport},
 Discrete and Continuous Dynamical Systems A, 34(4) (2014), 1533--1574.
+
+\bibitem{oksendal2003}
+B. \O ksendal,
+\emph{Stochastic Differential Equations: An Introduction with Applications},
+6th ed., Springer, Berlin, 2003.
 
 \bibitem{todorov2009}
 E. Todorov,
